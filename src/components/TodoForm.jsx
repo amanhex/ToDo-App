@@ -19,7 +19,7 @@ const TodoForm = ({ handleNewItem }) => {
           type="text"
           ref={todoItemName}
           className="input-text"
-          placeholder="Enter Todo Here"
+          placeholder="Enter To Do Here"
           required
         />
         <input type="date" ref={todoItemDate} className="input-date" required />
