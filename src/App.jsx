@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppName from "./components/AppName";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
@@ -7,7 +7,14 @@ import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
-  const [todoItemsList, setTodoItemsList] = useState([]);
+  const [todoItemsList, setTodoItemsList] = useState(() => {
+    const storedTodoItems = JSON.parse(localStorage.getItem("todoItems"));
+    return storedTodoItems || [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("todoItems", JSON.stringify(todoItemsList));
+  }, [todoItemsList]);
 
   const addNewItems = (itemName, itemDate) => {
     setTodoItemsList((currItem) => [

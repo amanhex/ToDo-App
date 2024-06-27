@@ -1,5 +1,5 @@
 const GreetMsg = () => {
-  return <span>Woah! You've completed all your tasks.</span>;
+  return <p className="greet-msg">Woah! You've completed all your tasks.</p>;
 };
 
 export default GreetMsg;

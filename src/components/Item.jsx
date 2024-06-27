@@ -6,7 +6,7 @@ const Item = ({ itemName, itemDueDate, onDeleteClick }) => {
         <div className="item-date">{itemDueDate}</div>
         <button
           type="button"
-          className="button"
+          className="delete-button"
           onClick={() => onDeleteClick(itemName)}
         >
           Delete

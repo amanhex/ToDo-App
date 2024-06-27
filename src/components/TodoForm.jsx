@@ -7,9 +7,15 @@ const TodoForm = ({ handleNewItem }) => {
     event.preventDefault();
     const todoName = todoItemName.current.value;
     const todoDate = todoItemDate.current.value;
-    todoItemName.current.value = "";
-    todoItemDate.current.value = "";
-    handleNewItem(todoName, todoDate);
+    if (todoName && todoDate) {
+      todoItemName.current.value = "";
+      todoItemDate.current.value = "";
+      handleNewItem(todoName, todoDate);
+    } else if (!todoName) {
+      alert("Enter the To Do Item");
+    } else {
+      alert("Enter the To Do Date");
+    }
   };
 
   return (
@@ -23,7 +29,13 @@ const TodoForm = ({ handleNewItem }) => {
           required
         />
         <input type="date" ref={todoItemDate} className="input-date" required />
-        <button onClick={handleAddButtonClicked}>Add</button>
+        <button
+          type="submit"
+          className="add-button"
+          onClick={handleAddButtonClicked}
+        >
+          Add
+        </button>
       </form>
     </>
   );

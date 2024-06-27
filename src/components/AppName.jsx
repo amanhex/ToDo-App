@@ -1,5 +1,9 @@
 const AppName = () => {
-  return <h1>To Do App - (Created with React)</h1>;
+  return (
+    <>
+      <h1 className="app-title">TO-DO APP</h1>
+    </>
+  );
 };
 
 export default AppName;
