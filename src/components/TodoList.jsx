@@ -1,6 +1,6 @@
 import Item from "./Item";
 
-const TodoList = ({ todoItemsList }) => {
+const TodoList = ({ todoItemsList, onDeleteClick }) => {
   return (
     <>
       <div className="item-container">
@@ -9,6 +9,7 @@ const TodoList = ({ todoItemsList }) => {
             itemName={item.name}
             itemDueDate={item.dueDate}
             onDeleteClick={onDeleteClick}
+            key={item.name}
           />
         ))}
       </div>

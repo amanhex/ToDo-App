@@ -2,12 +2,12 @@ const Item = ({ itemName, itemDueDate, onDeleteClick }) => {
   return (
     <>
       <div className="item">
-        <div>{itemName}</div>
-        <div>{itemDueDate}</div>
+        <div className="item-name">{itemName}</div>
+        <div className="item-date">{itemDueDate}</div>
         <button
           type="button"
           className="button"
-          onClick={() => onDeleteItem(itemName)}
+          onClick={() => onDeleteClick(itemName)}
         >
           Delete
         </button>

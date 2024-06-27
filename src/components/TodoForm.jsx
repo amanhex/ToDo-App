@@ -14,7 +14,7 @@ const TodoForm = ({ handleNewItem }) => {
 
   return (
     <>
-      <form action="">
+      <form>
         <input
           type="text"
           ref={todoItemName}

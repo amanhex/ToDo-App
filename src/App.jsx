@@ -2,6 +2,8 @@ import { useState } from "react";
 import AppName from "./components/AppName";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
+import GreetMsg from "./components/GreetMsg";
+import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
@@ -14,11 +16,20 @@ function App() {
     ]);
   };
 
+  const deleteItem = (itemName) => {
+    const newTodoItemsList = todoItemsList.filter(
+      (item) => item.name != itemName
+    );
+    setTodoItemsList(newTodoItemsList);
+  };
+
   return (
     <>
       <AppName />
       <TodoForm handleNewItem={addNewItems} />
-      <TodoList todoItemsList={todoItemsList} />
+      <TodoList todoItemsList={todoItemsList} onDeleteClick={deleteItem} />
+      {todoItemsList.length == 0 ? <GreetMsg /> : null}
+      <Footer />
     </>
   );
 }
