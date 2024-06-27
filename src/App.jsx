@@ -6,6 +6,8 @@ import GreetMsg from "./components/GreetMsg";
 import Footer from "./components/Footer";
 import "./App.css";
 
+const MAX_LOCAL_STORAGE_SIZE = 20 * 1024 * 1024;
+
 function App() {
   const [todoItemsList, setTodoItemsList] = useState(() => {
     const storedTodoItems = JSON.parse(localStorage.getItem("todoItems"));
@@ -13,7 +15,16 @@ function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem("todoItems", JSON.stringify(todoItemsList));
+    const serializedTodoItems = JSON.stringify(todoItemsList);
+    const currentStorageSize = serializedTodoItems.length * 2;
+
+    if (currentStorageSize > MAX_LOCAL_STORAGE_SIZE) {
+      alert("Storage limit exceeded. Clearing localStorage.");
+      localStorage.clear();
+      return;
+    }
+
+    localStorage.setItem("todoItems", serializedTodoItems);
   }, [todoItemsList]);
 
   const addNewItems = (itemName, itemDate) => {
@@ -25,7 +36,7 @@ function App() {
 
   const deleteItem = (itemName) => {
     const newTodoItemsList = todoItemsList.filter(
-      (item) => item.name != itemName
+      (item) => item.name !== itemName
     );
     setTodoItemsList(newTodoItemsList);
   };
@@ -35,7 +46,7 @@ function App() {
       <AppName />
       <TodoForm handleNewItem={addNewItems} />
       <TodoList todoItemsList={todoItemsList} onDeleteClick={deleteItem} />
-      {todoItemsList.length == 0 ? <GreetMsg /> : null}
+      {todoItemsList.length === 0 ? <GreetMsg /> : null}
       <Footer />
     </>
   );
